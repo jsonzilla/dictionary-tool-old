@@ -4,24 +4,24 @@
 #include <string.h> 
 #include <stdlib.h>     
 #include <time.h>
- 
-struct node { 
-    struct node    *left;     
-    struct node    *right;   
+
+struct Node { 
+    struct Node    *left;     
+    struct Node    *right;   
     char           *word;   
     unsigned long total;
 }; 
 
-struct nodeNumber { 
-    struct nodeNumber    *left;    
-    struct nodeNumber    *right;    
+struct NodeNumber { 
+    struct NodeNumber    *left;    
+    struct NodeNumber    *right;    
     int                  number; 
     unsigned long total;
 };  
 
 
-static struct node *root = NULL; 
-static struct nodeNumber *rootNumber = NULL;
+static struct Node *root = NULL; 
+static struct NodeNumber *rootNumber = NULL;
 
 void inline memory_Erro(void) 
 { 
@@ -31,28 +31,24 @@ void inline memory_Erro(void)
  
 char inline *save_string(char *string) 
 { 
-    char *new_string; 
- 
-    new_string = malloc((unsigned) (strlen(string) + 1)); 
- 
+    char *new_string = new char[strlen(string) + 1]; 
+
     if (new_string == NULL){ 
         memory_Erro(); 
-        }
+    }
     strcpy(new_string, string); 
-       return (new_string); 
+    return (new_string); 
 } 
 
-void inline enter(struct node **node, char *word) 
+void inline enter(struct Node **node, char *word) 
 { 
     int  result;        
- 
     char *save_string(char *); 
- 
 
     if ((*node) == NULL) { 
  
 
-        (*node) = malloc(sizeof(struct node)); 
+        (*node) = new Node(); 
         if ((*node) == NULL) 
             memory_Erro(); 
  
@@ -79,10 +75,10 @@ void inline enter(struct node **node, char *word)
         enter(&(*node)->left, word); 
         } 
 
-void inline enterNumber(struct nodeNumber **nodeNumber, int number) 
+void inline enterNumber(struct NodeNumber **nodeNumber, int number) 
 { 
     if ((*nodeNumber) == NULL){ 
-         (*nodeNumber) = malloc(sizeof(struct nodeNumber)); 
+         (*nodeNumber) = new NodeNumber(); 
         if ((*nodeNumber) == NULL) 
             memory_Erro(); 
  
@@ -162,21 +158,20 @@ void scanUrl(char *name)
             ch = fgetc(in_file); 
              if (isalpha(ch) || (ch == EOF)) {
                 break; 
-                }
+             }
         } 
         if (ch == EOF) {
             break; 
-            }
+        }
         word[0] = ch; 
         for (index = 1; index < (sizeof(word)-1); ++index) { 
             ch = fgetc(in_file); 
             if((ch == ' ') || (ch == EOF)){
                    break;
-                   }    
+            }    
             word[index] = ch; 
         } 
         word[index] = '\0'; 
- 
         enter(&root, word); 
     } 
     fclose(in_file); 
@@ -199,7 +194,7 @@ void scanNumb(char *name)
     fclose(in_file); 
     } 
  
-void print_number(struct nodeNumber *top) 
+void print_number(struct NodeNumber *top) 
 { 
     if (top == NULL) 
         return;                
@@ -209,7 +204,7 @@ void print_number(struct nodeNumber *top)
     print_number(top->right); 
 }
 
-void print_tree(struct node *top) 
+void print_tree(struct Node *top) 
 { 
     if (top == NULL) 
         return;              
@@ -219,7 +214,7 @@ void print_tree(struct node *top)
     print_tree(top->right); 
 } 
 
-void print_number_count(struct nodeNumber *top) 
+void print_number_count(struct NodeNumber *top) 
 { 
     if (top == NULL) 
         return;            
@@ -228,7 +223,7 @@ void print_number_count(struct nodeNumber *top)
     print_number_count(top->right); 
 }
 
-void print_tree_count(struct node *top) 
+void print_tree_count(struct Node *top) 
 { 
     if (top == NULL) 
         return;         
@@ -291,8 +286,8 @@ int main(int argc, char *argv[])
         fprintf(stderr, "    6 to check numbers and counting\n");
         }
     time(&final);
-    double diferenca = difftime(final,inicio);
+    double diff = difftime(final,inicio);
     
-    printf("It took %.2lf seconds to run\n", diferenca);
+    printf("It took %.2lf seconds to run\n", diff);
     return (0); 
 } 
