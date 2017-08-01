@@ -224,7 +224,7 @@ void print_number_count(struct nodeNumber *top)
     if (top == NULL) 
         return;            
     print_number_count(top->left); 
-    printf("%10.d,%d\n",top->total,top->number); 
+    printf("%10.lu,%d\n",top->total,top->number); 
     print_number_count(top->right); 
 }
 
@@ -234,7 +234,7 @@ void print_tree_count(struct node *top)
         return;         
  
     print_tree_count(top->left); 
-    printf("%10.d,%s\n",top->total, top->word); 
+    printf("%10.lu,%s\n",top->total, top->word); 
     print_tree_count(top->right); 
 }  
  

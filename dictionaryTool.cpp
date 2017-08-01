@@ -31,7 +31,7 @@ int main(int ac, char* av[]) {
 	std::ifstream file;
 	file.open(av[1]);
 
-	if (!file.is_open()) {
+	if (file.is_open() == false) {
 		std::cout << ERROROPENING << std::endl;
 		return 1;
 	}
