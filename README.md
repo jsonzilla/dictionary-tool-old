@@ -1,4 +1,5 @@
 # dictionary-tool (old)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/67ec9ad162db4011b4d1c4bef555cda5)](https://www.codacy.com/app/0unit/dictionary-tool-old?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=0unit/dictionary-tool-old&amp;utm_campaign=Badge_Grade)
 
 Updated version -> (https://github.com/0unit/dictionary-tool)
 
